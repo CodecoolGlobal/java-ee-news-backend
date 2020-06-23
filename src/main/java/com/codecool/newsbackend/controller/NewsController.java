@@ -72,14 +72,6 @@ System.out.println("i was called");
         return MyGETRequest("http://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=687acd6f80d44fe0b6c2c28d162fa674");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/news")
-    public String getAllBusiness() throws IOException {
-
-        return MyGETRequest("\n" +
-                "http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=687acd6f80d44fe0b6c2c28d162fa674");
-    }
-
     public static String MyGETRequest(String url) throws IOException {
         String apiKey = "687acd6f80d44fe0b6c2c28d162fa674";
 
