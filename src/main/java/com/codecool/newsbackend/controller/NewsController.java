@@ -79,7 +79,6 @@ System.out.println("i was called");
         String readLine = null;
         HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
         conection.setRequestMethod("GET");
-        // conection.setRequestProperty("userId", "a1bcdef"); // set userId its a sample here
         int responseCode = conection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) {
             BufferedReader in = new BufferedReader(
@@ -88,9 +87,6 @@ System.out.println("i was called");
             while ((readLine = in .readLine()) != null) {
                 response.append(readLine);
             } in .close();
-            // print result
-            System.out.println("JSON String Result " + response.toString());
-            //GetAndPost.POSTRequest(response.toString());
             return response.toString();
         } else {
             System.out.println("GET NOT WORKED");
