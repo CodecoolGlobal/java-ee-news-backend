@@ -34,7 +34,7 @@ System.out.println("i was called");
         return "hello world";
     }
 
-    @CrossOrigin(origins = "http://localhost:3001")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/data")
     String getAllData() {
 
