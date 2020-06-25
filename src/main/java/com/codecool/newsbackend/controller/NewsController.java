@@ -26,12 +26,6 @@ public class NewsController {
     @Value("https://newsapi.org/v2/top-headlines?country=us&apiKey=00f7878a7a684b51a8f4eb8a56d4a033")
     String serviceURL;
 
-    @GetMapping("/dummy")
-    public String dummy() {
-System.out.println("i was called");
-
-        return "hello world";
-    }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/data")
@@ -41,9 +35,8 @@ System.out.println("i was called");
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/search/{urlParam}", method = GET)
-//    @GetMapping("/search")
     @ResponseBody
-    public String addFoo( @PathVariable String urlParam) {
+    public String search( @PathVariable String urlParam) {
         String url = "https://newsapi.org/v2/everything?q=" + urlParam + "&apiKey=00f7878a7a684b51a8f4eb8a56d4a033";
         return restTemplate.getForObject(url, String.class);
     }
