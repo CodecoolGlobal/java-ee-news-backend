@@ -3,11 +3,8 @@ package com.codecool.newsbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
@@ -15,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping
@@ -34,11 +33,19 @@ System.out.println("i was called");
         return "hello world";
     }
 
-    @CrossOrigin(origins = "http://localhost:3001")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/data")
     String getAllData() {
-
         return restTemplate.getForObject(serviceURL, String.class);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value = "/search/{urlParam}", method = GET)
+//    @GetMapping("/search")
+    @ResponseBody
+    public String addFoo( @PathVariable String urlParam) {
+        String url = "https://newsapi.org/v2/everything?q=" + urlParam + "&apiKey=00f7878a7a684b51a8f4eb8a56d4a033";
+        return restTemplate.getForObject(url, String.class);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
