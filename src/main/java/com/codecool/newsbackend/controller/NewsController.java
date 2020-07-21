@@ -16,7 +16,8 @@ import java.net.URL;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
-@RequestMapping
+// @RequestMapping
+@CrossOrigin(origins = "http://localhost:3000")
 public class NewsController {
 
     @Autowired
@@ -27,13 +28,13 @@ public class NewsController {
     String serviceURL;
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/data")
     String getAllData() {
         return restTemplate.getForObject(serviceURL, String.class);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @RequestMapping(value = "/search/{urlParam}", method = GET)
     @ResponseBody
     public String search( @PathVariable String urlParam) {
@@ -41,49 +42,49 @@ public class NewsController {
         return restTemplate.getForObject(url, String.class);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/business")
     public String getBusiness() throws IOException {
 
         return MyGETRequest("http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=687acd6f80d44fe0b6c2c28d162fa674");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/entertainment")
     public String getEntertainment() throws IOException {
 
         return MyGETRequest("http://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=687acd6f80d44fe0b6c2c28d162fa674");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/general")
     public String getGeneral() throws IOException {
 
         return MyGETRequest("http://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=687acd6f80d44fe0b6c2c28d162fa674");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/health")
     public String getHealth() throws IOException {
 
         return MyGETRequest("http://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=687acd6f80d44fe0b6c2c28d162fa674");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/science")
     public String getScience() throws IOException {
 
         return MyGETRequest("http://newsapi.org/v2/top-headlines?country=us&category=science&apiKey=687acd6f80d44fe0b6c2c28d162fa674");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/sports")
     public String getSports() throws IOException {
 
         return MyGETRequest("http://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=687acd6f80d44fe0b6c2c28d162fa674");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/technology")
     public String getTechnology() throws IOException {
 
@@ -107,8 +108,9 @@ public class NewsController {
             } in .close();
             return response.toString();
         } else {
-            System.out.println("GET NOT WORKED");
-            return "something went wrong :(";
+
+            System.out.println("GET NOT WORKED: " + url );
+            return "something went wrong :( url not working: " + url;
         }
 
     }
