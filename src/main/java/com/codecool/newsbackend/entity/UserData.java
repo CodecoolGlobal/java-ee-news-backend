@@ -25,5 +25,8 @@ public class UserData {
     @OneToOne(cascade = CascadeType.PERSIST)
     private RegCredential regCredential;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private TopicSetting topicSetting;
+
 
 }
