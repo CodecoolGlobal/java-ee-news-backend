@@ -50,7 +50,7 @@ public class LoginController {
         boolean userExists = loginService.handleLogin(loginCredential.getUsername(), loginCredential.getPassword());
         System.out.println(loginCredential.getUsername() + " " + loginCredential.getPassword());
         if(userExists){
-            sendEmail();
+            // sendEmail();
             return ResponseEntity.ok(loginService.getUserId(loginCredential.getUsername()));
         }
 
