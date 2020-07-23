@@ -29,7 +29,6 @@ public class LoginController {
     @Autowired
     RegistrationService registrationService;
 
-
     @Autowired
     private JavaMailSender mailSender;
 

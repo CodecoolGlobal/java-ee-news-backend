@@ -28,5 +28,4 @@ public class UserData {
     @OneToOne(cascade = CascadeType.PERSIST)
     private TopicSetting topicSetting;
 
-
 }

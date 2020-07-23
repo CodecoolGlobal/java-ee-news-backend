@@ -21,7 +21,6 @@ public class Session {
     @Column
     private Long sessionId;
 
-
     @OneToOne(cascade = CascadeType.PERSIST)
     private RegCredential regCredential;
 }

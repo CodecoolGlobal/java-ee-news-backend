@@ -25,7 +25,6 @@ import java.util.Properties;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
-// @RequestMapping
 @CrossOrigin(origins = "http://localhost:3000")
 public class NewsController {
 
@@ -63,33 +62,24 @@ public class NewsController {
 
     @GetMapping("/firstFive")
     String getFirstFiveForMain() {
-        //System.out.println(restTemplate.getForObject("https://newsapi.org/v2/top-headlines?country=us&pageSize=4&apiKey=00f7878a7a684b51a8f4eb8a56d4a033", String.class));
         return restTemplate.getForObject("https://newsapi.org/v2/top-headlines?country=us&pageSize=5&apiKey=00f7878a7a684b51a8f4eb8a56d4a033", String.class);
     }
 
     @GetMapping("/techFour")
     String technologyFirstFour() {
-        //System.out.println(restTemplate.getForObject("https://newsapi.org/v2/top-headlines?country=us&pageSize=4&apiKey=00f7878a7a684b51a8f4eb8a56d4a033", String.class));
         return restTemplate.getForObject("http://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=4&apiKey=687acd6f80d44fe0b6c2c28d162fa674", String.class);
     }
 
     @GetMapping("/scienceFour")
     String scienceFirstFour() {
-        //System.out.println(restTemplate.getForObject("https://newsapi.org/v2/top-headlines?country=us&pageSize=4&apiKey=00f7878a7a684b51a8f4eb8a56d4a033", String.class));
         return restTemplate.getForObject("http://newsapi.org/v2/top-headlines?country=us&category=science&pageSize=4&apiKey=687acd6f80d44fe0b6c2c28d162fa674", String.class);
     }
 
     @GetMapping("/generalFour")
     String generalFirstFour() {
-        //System.out.println(restTemplate.getForObject("https://newsapi.org/v2/top-headlines?country=us&pageSize=4&apiKey=00f7878a7a684b51a8f4eb8a56d4a033", String.class));
         return restTemplate.getForObject("http://newsapi.org/v2/top-headlines?country=us&category=general&pageSize=4&apiKey=687acd6f80d44fe0b6c2c28d162fa674", String.class);
     }
 
-//    @GetMapping("/data")
-//    String getAllData() {
-//        System.out.println(restTemplate.getForObject(serviceURL, String.class));
-//        return restTemplate.getForObject(serviceURL, String.class);
-//    }
 
 
     @RequestMapping(value = "/search/{urlParam}", method = GET)
@@ -149,7 +139,6 @@ public class NewsController {
     }
 
     public static String MyGETRequest(String url) throws IOException {
-        String apiKey = "687acd6f80d44fe0b6c2c28d162fa674";
 
         URL urlForGetRequest = new URL(url);
         String readLine = null;
@@ -171,7 +160,5 @@ public class NewsController {
         }
 
     }
-
-
 
 }
