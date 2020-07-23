@@ -43,10 +43,10 @@ public class TopicSettingService {
                 .build();
  */
 
-    public void updateUserTopicSettings(TopicSetting topicSetting) {
+    public void updateUserTopicSettings(TopicSetting topicSetting, Long user_id) {
 
 
-        topicSettingRepository.updateUserTopicSettingsByUserId(1L, topicSetting.isBusiness(),
+        topicSettingRepository.updateUserTopicSettingsByUserId(user_id, topicSetting.isBusiness(),
                 topicSetting.isEntertainment(), topicSetting.isGeneral(), topicSetting.isHealth(),
                 topicSetting.isScience(), topicSetting.isSports(), topicSetting.isTechnology());
 

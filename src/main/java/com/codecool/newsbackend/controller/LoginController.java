@@ -49,17 +49,14 @@ public class LoginController {
     public ResponseEntity<Integer> doLogin( @RequestBody LoginCredential loginCredential) {
         boolean userExists = loginService.handleLogin(loginCredential.getUsername(), loginCredential.getPassword());
         System.out.println(loginCredential.getUsername() + " " + loginCredential.getPassword());
+        Integer userid = registrationService.getUserId(loginCredential.getUsername());
         if(userExists){
             // sendEmail();
-            return ResponseEntity.ok(loginService.getUserId(loginCredential.getUsername()));
+            return ResponseEntity.ok(userid);
         }
 
         return ResponseEntity.ok(-1);
     }
-
-
-
-
 
 
 

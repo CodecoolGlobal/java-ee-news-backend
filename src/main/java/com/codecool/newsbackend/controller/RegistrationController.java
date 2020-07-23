@@ -23,15 +23,16 @@ public class RegistrationController {
     RegistrationService registrationService;
 
     @PostMapping(value = "/registration", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> doRegistration( @RequestBody RegCredential regCredential) {
+    public ResponseEntity<Integer> doRegistration( @RequestBody RegCredential regCredential) {
         boolean userExists = registrationService.handleRegistration(regCredential.getUsername(), regCredential.getEmail(), regCredential.getPassword());
         System.out.println(regCredential.getEmail() + regCredential.getUsername() + regCredential.getPassword());
         if(userExists){
-            return ResponseEntity.ok("User already exists");
+            return ResponseEntity.ok(-1);
         }
         //System.out.println(postPayload);
+        int userId = registrationService.getUserId(regCredential.getUsername());
 
-        return ResponseEntity.ok("User is valid");
+        return ResponseEntity.ok(userId);
     }
 
 

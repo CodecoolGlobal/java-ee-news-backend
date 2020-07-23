@@ -39,7 +39,7 @@ public class RegistrationService {
             TopicSetting newSettings = TopicSetting.builder()
                     .business(false)
                     .entertainment(false)
-                    .general(false)
+                    .general(true)
                     .health(false)
                     .science(false)
                     .sports(false)
@@ -62,5 +62,11 @@ public class RegistrationService {
 
         }
         return false;
+    }
+
+    public int getUserId(String username){
+        int userId = regCredentialRepository.getUserDataId(username);
+
+        return userId;
     }
 }

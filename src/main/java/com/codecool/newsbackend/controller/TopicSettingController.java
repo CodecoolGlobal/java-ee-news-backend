@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -17,10 +18,11 @@ public class TopicSettingController {
     @Autowired
     TopicSettingService topicSettingService;
 
-    @PostMapping(path = "/savesettings", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public String saveTopicSettings(@RequestBody TopicSetting topicSetting) throws IllegalAccessException {
+    @RequestMapping(path = "/savesettings/{user_id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, method = POST)
+    @ResponseBody
+    public String saveTopicSettings(@RequestBody TopicSetting topicSetting, @PathVariable Long user_id) throws IllegalAccessException {
 
-        topicSettingService.updateUserTopicSettings(topicSetting);
+        topicSettingService.updateUserTopicSettings(topicSetting, user_id);
 
 
         return "updated";
