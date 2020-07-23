@@ -30,8 +30,8 @@ public class TopicSetting {
     public boolean sports;
 
     public boolean technology;
-/*
+
     @OneToOne(mappedBy = "topicSetting")
     @EqualsAndHashCode.Exclude
-    private UserData userData; */
+    private UserData userData;
 }

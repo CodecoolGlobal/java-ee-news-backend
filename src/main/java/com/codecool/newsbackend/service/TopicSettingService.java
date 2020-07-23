@@ -27,12 +27,6 @@ public class TopicSettingService {
     private TopicSettingRepository topicSettingRepository;
 
 
-
-    List<String> topics = Arrays.asList("business", "entertainment", "general", "health", "science", "sports",
-            "technology");
-
-    private Map<String, String> topicMap = Map.of("business", "isBusiness()");
-
     // this can be moved to where the registration is handled to save initial settings, so they can be updated
      /*
     public void handleTopicSetting(TopicSetting topicSetting) {
@@ -56,13 +50,11 @@ public class TopicSettingService {
                 topicSetting.isEntertainment(), topicSetting.isGeneral(), topicSetting.isHealth(),
                 topicSetting.isScience(), topicSetting.isSports(), topicSetting.isTechnology());
 
-        System.out.println(topicSettingRepository.getUserChosenTopicsByUserId(1L));
 
     }
 
     public String buildUserChosenTopicSelection(Long user_id) throws IllegalAccessException {
 
-        Map<String, String> topicSelection = new HashMap<>();
 
         TopicSetting userChosenTopicsByUserId = topicSettingRepository.getUserChosenTopicsByUserId(user_id);
 
@@ -80,26 +72,20 @@ public class TopicSettingService {
         myObjectAsDict.forEach((k,v) -> {
 
             if(v.equals(true)) {
-                System.out.println(k);
+
                 try {
                     String response = MyGETRequestWithLimit(k, 4);
-                    System.out.println("response " + response);
+
                     JsonObject singleTopic = new JsonObject();
                     JsonObject convertedResponse = new Gson().fromJson(response, JsonObject.class);
                     singleTopic.add(k, convertedResponse);
                     allSelectedTopics.add(singleTopic);
-                    System.out.println("convertedObject" + convertedResponse);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
-
-
-
-        System.out.println("legyéljooo: " + allSelectedTopics);
-
-
 
         return allSelectedTopics.toString();
 
