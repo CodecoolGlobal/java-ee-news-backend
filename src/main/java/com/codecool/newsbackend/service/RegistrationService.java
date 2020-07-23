@@ -39,7 +39,7 @@ public class RegistrationService {
             TopicSetting newSettings = TopicSetting.builder()
                     .business(false)
                     .entertainment(false)
-                    .general(true)
+                    .general(false)
                     .health(false)
                     .science(false)
                     .sports(false)

@@ -54,7 +54,6 @@ public class LoginController {
             // sendEmail();
             return ResponseEntity.ok(userid);
         }
-
         return ResponseEntity.ok(-1);
     }
 
