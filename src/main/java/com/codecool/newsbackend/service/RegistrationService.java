@@ -41,4 +41,10 @@ public class RegistrationService {
         }
         return false;
     }
+
+    public int getUserId(String username){
+        int userId = regCredentialRepository.getUserDataId(username);
+
+        return userId;
+    }
 }
