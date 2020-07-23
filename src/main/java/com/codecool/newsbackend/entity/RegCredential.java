@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 public class RegCredential {
 
+
     @Id
     @GeneratedValue
     private Long id;
@@ -26,12 +27,16 @@ public class RegCredential {
     @Column(nullable = false, unique = true)
     private String password;
 
-    @Column(nullable = false)
-    private LocalDateTime registrationTime;
-
+//    @Column(nullable = false)
+//    private LocalDateTime registrationTime;
+//
     @OneToOne(mappedBy = "regCredential")
     @EqualsAndHashCode.Exclude
     private UserData userData;
+
+    @OneToOne(mappedBy = "regCredential")
+    @EqualsAndHashCode.Exclude
+    private Session session;
 
 
 }
