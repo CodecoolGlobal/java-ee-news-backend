@@ -26,7 +26,7 @@ public class RegCredential {
     @Column(nullable = false, unique = true)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime registrationTime;
 
     @OneToOne(mappedBy = "regCredential")

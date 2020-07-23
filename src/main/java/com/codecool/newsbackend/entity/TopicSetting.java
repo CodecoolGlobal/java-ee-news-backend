@@ -17,21 +17,21 @@ public class TopicSetting {
     @GeneratedValue
     private Long id;
 
-    private boolean business;
+    public boolean business;
 
-    private boolean entertainment;
+    public boolean entertainment;
 
-    private boolean general;
+    public boolean general;
 
-    private boolean health;
+    public boolean health;
 
-    private boolean science;
+    public boolean science;
 
-    private boolean sports;
+    public boolean sports;
 
-    private boolean technology;
-
+    public boolean technology;
+/*
     @OneToOne(mappedBy = "topicSetting")
     @EqualsAndHashCode.Exclude
-    private UserData userData;
+    private UserData userData; */
 }
