@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Entity
 public class RegCredential {
 
-
     @Id
     @GeneratedValue
     private Long id;
