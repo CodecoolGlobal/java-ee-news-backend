@@ -26,73 +26,41 @@ public class TopicSettingService {
     @Autowired
     private TopicSettingRepository topicSettingRepository;
 
-
-    // this can be moved to where the registration is handled to save initial settings, so they can be updated
-     /*
-    public void handleTopicSetting(TopicSetting topicSetting) {
-        System.out.println("service hello: " + topicSetting);
-
-        TopicSetting newSettings = TopicSetting.builder()
-                .business(topicSetting.isBusiness())
-                .entertainment(topicSetting.isEntertainment())
-                .general(topicSetting.isGeneral())
-                .health(topicSetting.isHealth())
-                .science(topicSetting.isScience())
-                .sports(topicSetting.isSports())
-                .technology(topicSetting.isTechnology())
-                .build();
- */
-
     public void updateUserTopicSettings(TopicSetting topicSetting, Long user_id) {
-
 
         topicSettingRepository.updateUserTopicSettingsByUserId(user_id, topicSetting.isBusiness(),
                 topicSetting.isEntertainment(), topicSetting.isGeneral(), topicSetting.isHealth(),
                 topicSetting.isScience(), topicSetting.isSports(), topicSetting.isTechnology());
-
-
     }
 
     public String buildUserChosenTopicSelection(Long user_id) throws IllegalAccessException {
 
-
         TopicSetting userChosenTopicsByUserId = topicSettingRepository.getUserChosenTopicsByUserId(user_id);
-
         Map<String, Object> myObjectAsDict = new HashMap<>();
         Field[] allFields = TopicSetting.class.getFields();
         for (Field field : allFields) {
-            Class<?> targetType = field.getType();
-            Object objectValue = userChosenTopicsByUserId;
-            Object value = field.get(objectValue);
+            Object value = field.get(userChosenTopicsByUserId);
             myObjectAsDict.put(field.getName(), value);
         }
 
-
         JsonArray allSelectedTopics = new JsonArray();
         myObjectAsDict.forEach((k,v) -> {
-
             if(v.equals(true)) {
-
                 try {
                     String response = MyGETRequestWithLimit(k, 4);
-
                     JsonObject singleTopic = new JsonObject();
                     JsonObject convertedResponse = new Gson().fromJson(response, JsonObject.class);
                     singleTopic.add(k, convertedResponse);
                     allSelectedTopics.add(singleTopic);
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
-
         return allSelectedTopics.toString();
-
     }
 
     public static String MyGETRequestWithLimit(String topic, int limit) throws IOException {
-        String apiKey = "687acd6f80d44fe0b6c2c28d162fa674";
 
         URL urlForGetRequest = new URL("http://newsapi.org/v2/top-headlines?country=us&category=" + topic + "&pageSize="+ limit+"&apiKey=687acd6f80d44fe0b6c2c28d162fa674");
         String readLine = null;

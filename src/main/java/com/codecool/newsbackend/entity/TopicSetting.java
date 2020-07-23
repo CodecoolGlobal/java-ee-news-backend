@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 @Builder
 @Entity
 public class TopicSetting {
+
     @Id
     @GeneratedValue
     private Long id;

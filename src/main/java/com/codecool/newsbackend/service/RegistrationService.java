@@ -19,17 +19,14 @@ public class RegistrationService {
     @Autowired
     private UserDataRepository userDataRepository;
 
-    @Autowired
-    private TopicSettingRepository topicSettingRepository;
 
     public boolean handleRegistration(String username, String email, String password) {
+
         boolean exists = regCredentialRepository.existsByUsernameOrEmail(username, email);
         if(exists){
             return true;
         }
         else {
-            //password hashing needed
-
             RegCredential regCredential = RegCredential.builder()
                     .email(email)
                     .password(password)
@@ -45,11 +42,6 @@ public class RegistrationService {
                     .sports(false)
                     .technology(false)
                     .build();
-            /*
-            topicSettingRepository.save(newSettings);
-            topicSettingRepository.flush();
-            Long id = newSettings.getId();
-            */
 
             UserData userData = UserData.builder()
                     .regCredential(regCredential)
@@ -57,7 +49,6 @@ public class RegistrationService {
                     .build();
             userData.setRegCredential(regCredential);
             regCredentialRepository.save(regCredential);
-            //topicSettingRepository.save(newSettings);
             userDataRepository.save(userData);
 
         }
@@ -65,8 +56,7 @@ public class RegistrationService {
     }
 
     public int getUserId(String username){
-        int userId = regCredentialRepository.getUserDataId(username);
 
-        return userId;
+        return regCredentialRepository.getUserDataId(username);
     }
 }

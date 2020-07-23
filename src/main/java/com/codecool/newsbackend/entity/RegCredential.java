@@ -26,9 +26,6 @@ public class RegCredential {
     @Column(nullable = false, unique = true)
     private String password;
 
-//    @Column(nullable = false)
-//    private LocalDateTime registrationTime;
-//
     @OneToOne(mappedBy = "regCredential")
     @EqualsAndHashCode.Exclude
     private UserData userData;
@@ -36,6 +33,5 @@ public class RegCredential {
     @OneToOne(mappedBy = "regCredential")
     @EqualsAndHashCode.Exclude
     private Session session;
-
 
 }
