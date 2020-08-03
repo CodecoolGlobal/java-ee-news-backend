@@ -23,7 +23,7 @@ public interface TopicSettingRepository extends JpaRepository<TopicSetting, Long
                                          @Param("technology") boolean technology );
 
 
-    @Query("select ts from TopicSetting ts where ts.id = (select u.topicSetting.id from UserData u where u.id = :user_id)")
+    @Query("select ts from TopicSetting ts join ts.userData u where u.id = :user_id")
     TopicSetting getUserChosenTopicsByUserId(@Param("user_id") Long user_id);
 
 
