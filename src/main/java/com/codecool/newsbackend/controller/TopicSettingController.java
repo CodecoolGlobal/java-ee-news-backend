@@ -17,6 +17,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
+
 public class TopicSettingController {
 
     @Autowired
@@ -24,10 +25,8 @@ public class TopicSettingController {
 
     @RequestMapping(path = "/savesettings/{username}", consumes = {MediaType.APPLICATION_JSON_VALUE}, method = POST)
     @ResponseBody
-    //@ResponseStatus(HttpStatus.OK)
     public void saveTopicSettings(@RequestBody TopicSetting topicSetting, @PathVariable String username) {
         topicSettingService.updateUserTopicSettings(topicSetting, username);
-        //return "setting saved";
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -38,7 +37,6 @@ public class TopicSettingController {
         System.out.println("helloo" + Authorization);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(authentication.getPrincipal());
-        //UserData user = (UserData) authentication.getPrincipal();
         return topicSettingService.buildUserChosenTopicSelection(username);
     }
 }

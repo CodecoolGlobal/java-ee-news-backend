@@ -33,26 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                //.antMatchers("/**").permitAll() // allowed by anyone
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/registration").permitAll()
-                .antMatchers(HttpMethod.GET, "/registration").permitAll()
-                .antMatchers(HttpMethod.OPTIONS, "/registration").permitAll()
-                .antMatchers(HttpMethod.OPTIONS, "/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/userpage").authenticated() // allowed only when signed in
-                .antMatchers(HttpMethod.POST, "/userpage").authenticated() // allowed only when signed in
-                //.antMatchers(HttpMethod.POST, "/savesettings/*").authenticated()
-               // .antMatchers(HttpMethod.OPTIONS, "/savesettings/*").authenticated()
+                .antMatchers("/auth/**").permitAll()
+               .antMatchers(HttpMethod.GET, "/public/**").permitAll()
                 .antMatchers("/savesettings/*").authenticated()
-                .antMatchers(HttpMethod.GET, "/gettopicselection/*").authenticated()
-                .antMatchers(HttpMethod.OPTIONS, "/gettopicselection/*").authenticated()
-                .antMatchers(HttpMethod.GET, "/data").permitAll()
-                .antMatchers(HttpMethod.GET, "/firstFive").permitAll()
-                .antMatchers(HttpMethod.GET, "/techFour").permitAll()
-                .antMatchers(HttpMethod.GET, "//generalFour").permitAll()
-                .antMatchers(HttpMethod.GET, "/scienceFour").permitAll()
-
+                .antMatchers("/gettopicselection/*").authenticated()
                 .anyRequest().denyAll() // anything else is denied
                 .and()
                 .addFilterBefore(new JwtTokenFilter(jwtTokenServices), UsernamePasswordAuthenticationFilter.class);

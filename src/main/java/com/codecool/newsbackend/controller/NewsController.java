@@ -26,6 +26,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/public")
 public class NewsController {
 
     @Autowired

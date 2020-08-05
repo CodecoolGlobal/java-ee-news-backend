@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/auth")
 public class RegistrationController {
 
 
