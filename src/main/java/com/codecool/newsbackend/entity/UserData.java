@@ -35,4 +35,11 @@ public class UserData {
     @OneToOne(cascade = CascadeType.PERSIST)
     private TopicSetting topicSetting;
 
+
+    /*
+    @Singular
+    @OneToMany(mappedBy = "userData", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @EqualsAndHashCode.Exclude
+    private Set<Article> articles;
+*/
 }
