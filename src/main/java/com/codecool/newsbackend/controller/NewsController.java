@@ -61,7 +61,9 @@ public class NewsController {
     @RequestMapping(value = "/search/{urlParam}", method = GET)
     @ResponseBody
     public String search( @PathVariable String urlParam) {
-        String url = "https://newsapi.org/v2/everything?q=" + urlParam + "&apiKey=00f7878a7a684b51a8f4eb8a56d4a033";
+        String[] splitted = urlParam.split("\\s+");
+        String joinedString = String.join(" AND ", splitted);
+        String url = "https://newsapi.org/v2/everything?qInTitle=" + joinedString + "&apiKey=00f7878a7a684b51a8f4eb8a56d4a033";
         return restTemplate.getForObject(url, String.class);
     }
 
