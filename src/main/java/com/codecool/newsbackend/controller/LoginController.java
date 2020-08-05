@@ -85,9 +85,9 @@ public class LoginController {
             model.put("token", token);
             return ResponseEntity.ok(model);
         } catch (AuthenticationException e) {
-            throw new BadCredentialsException("Invalid username/password supplied");
-        }
+        throw new BadCredentialsException("Invalid username/password supplied");
     }
+}
 
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
