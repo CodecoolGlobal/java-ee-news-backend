@@ -1,11 +1,10 @@
 package com.codecool.newsbackend.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,5 +26,11 @@ public class UserData {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private TopicSetting topicSetting;
+
+
+    @Singular
+    @OneToMany(mappedBy = "userData", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @EqualsAndHashCode.Exclude
+    private Set<Article> favouriteArticles;
 
 }
