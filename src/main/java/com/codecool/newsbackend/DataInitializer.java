@@ -41,75 +41,72 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) {
         log.debug("initializing sample data...");
 
-//        TopicSetting newSettings1 = TopicSetting.builder()
-//                .business(false)
-//                .entertainment(false)
-//                .general(false)
-//                .health(false)
-//                .science(false)
-//                .sports(false)
-//                .technology(false)
-//                .build();
+        TopicSetting newSettings1 = TopicSetting.builder()
+                .business(false)
+                .entertainment(false)
+                .general(false)
+                .health(false)
+                .science(false)
+                .sports(false)
+                .technology(false)
+                .build();
 
         UserData userData = UserData.builder()
                 .username("user")
                 .password(passwordEncoder.encode("password"))
                // .regCredential(regCredential)
                 .roles(Collections.singletonList("ROLE_USER"))
-                //.topicSetting(newSettings1)
+                .topicSetting(newSettings1)
                 .build();
 
-//       userData.setRegCredential(regCredential);
-//       regCredentialRepository.save(regCredential);
-
-      // userData.setTopicSetting(newSettings1);
        users.saveAndFlush(userData);
-
-
-
-
-
 
         //userData.setTopicSetting(newSettings1);
 //        newSettings1.setUserData(userData);
+
+        TopicSetting newSettings2 = TopicSetting.builder()
+                .business(false)
+                .entertainment(false)
+                .general(false)
+                .health(false)
+                .science(false)
+                .sports(false)
+                .technology(false)
+                .build();
 
 
         UserData admin = UserData.builder()
                 .username("admin")
                 .password(passwordEncoder.encode("password"))
                 .roles(Arrays.asList("ROLE_USER", "ROLE_ADMIN"))
+                .topicSetting(newSettings2)
                 .build();
-        users.save(admin);
+        users.saveAndFlush(admin);
 //
-//        TopicSetting newSettings2 = TopicSetting.builder()
-//                .business(false)
-//                .entertainment(false)
-//                .general(false)
-//                .health(false)
-//                .science(false)
-//                .sports(false)
-//                .technology(false)
-//                .build();
-//        //topicSetting.save(newSettings2);
+
+        //topicSetting.save(newSettings2);
 //
 //        admin.setTopicSetting(newSettings2);
-//
+
+        TopicSetting newSettings3 = TopicSetting.builder()
+                .business(false)
+                .entertainment(false)
+                .general(false)
+                .health(false)
+                .science(false)
+                .sports(false)
+                .technology(false)
+                .build();
+
         UserData tester = UserData.builder()
                 .username("Tester")
                 .password(passwordEncoder.encode("test"))
                 .roles(Collections.singletonList("ROLE_USER"))
+                .topicSetting(newSettings3)
                 .build();
-        users.save(tester);
+        users.saveAndFlush(tester);
 //
-//        TopicSetting newSettings3 = TopicSetting.builder()
-//                .business(false)
-//                .entertainment(false)
-//                .general(false)
-//                .health(false)
-//                .science(false)
-//                .sports(false)
-//                .technology(false)
-//                .build();
+
 //        //topicSetting.save(newSettings3);
 //
 //        tester.setTopicSetting(newSettings3);

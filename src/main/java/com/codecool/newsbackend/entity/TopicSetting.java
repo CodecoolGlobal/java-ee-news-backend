@@ -34,5 +34,6 @@ public class TopicSetting {
 
     @OneToOne(mappedBy = "topicSetting")
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private UserData userData;
 }
