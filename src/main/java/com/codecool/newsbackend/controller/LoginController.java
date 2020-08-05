@@ -89,21 +89,6 @@ public class LoginController {
         }
     }
 
-//    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity doLogin( @RequestBody LoginCredential loginCredential) {
-//        boolean userExists = loginService.handleLogin(loginCredential.getUsername(), loginCredential.getPassword());
-//        System.out.println(loginCredential.getUsername() + " " + loginCredential.getPassword());
-//        Integer userid = registrationService.getUserId(loginCredential.getUsername());
-//        if(userExists){
-//            // sendEmail();
-//            return ResponseEntity.ok(userid);
-//        }
-//        return ResponseEntity.ok(-1);
-//    }
-
-
-
-
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
