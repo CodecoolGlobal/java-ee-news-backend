@@ -26,20 +26,21 @@ public class TopicSettingService {
     @Autowired
     private TopicSettingRepository topicSettingRepository;
 
-    public void updateUserTopicSettings(TopicSetting topicSetting, Long user_id) {
+    public void updateUserTopicSettings(TopicSetting topicSetting, String username) {
 
-        topicSettingRepository.updateUserTopicSettingsByUserId(user_id, topicSetting.isBusiness(),
+        topicSettingRepository.updateUserTopicSettingsByUserName(username, topicSetting.isBusiness(),
                 topicSetting.isEntertainment(), topicSetting.isGeneral(), topicSetting.isHealth(),
                 topicSetting.isScience(), topicSetting.isSports(), topicSetting.isTechnology());
     }
 
-    public String buildUserChosenTopicSelection(Long user_id) throws IllegalAccessException {
+    public String buildUserChosenTopicSelection(String username) throws IllegalAccessException {
 
-        TopicSetting userChosenTopicsByUserId = topicSettingRepository.getUserChosenTopicsByUserId(user_id);
+        //TopicSetting userChosenTopicsByUserId = topicSettingRepository.getUserChosenTopicsByUserId(user_id);
+        TopicSetting userChosenTopicsByUserName = topicSettingRepository.getUserChosenTopicsByUserName(username);
         Map<String, Object> myObjectAsDict = new HashMap<>();
         Field[] allFields = TopicSetting.class.getFields();
         for (Field field : allFields) {
-            Object value = field.get(userChosenTopicsByUserId);
+            Object value = field.get(userChosenTopicsByUserName);
             myObjectAsDict.put(field.getName(), value);
         }
 

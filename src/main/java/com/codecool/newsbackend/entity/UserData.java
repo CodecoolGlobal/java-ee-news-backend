@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,20 +19,20 @@ public class UserData {
     @GeneratedValue
     private Long id;
 
-    private String firstName;
+    @NonNull
+    private String username;
 
-    private String lastName;
+    @NonNull
+    private String password;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private RegCredential regCredential;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private TopicSetting topicSetting;
-
-
-    @Singular
-    @OneToMany(mappedBy = "userData", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @EqualsAndHashCode.Exclude
-    private Set<Article> favouriteArticles;
 
 }
