@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                .antMatchers(HttpMethod.GET, "/public/**").permitAll()
                 .antMatchers("/savesettings/*").authenticated()
                 .antMatchers("/gettopicselection/*").authenticated()
+                .antMatchers("/add-favourites/").authenticated()
                 .anyRequest().denyAll() // anything else is denied
                 .and()
                 .addFilterBefore(new JwtTokenFilter(jwtTokenServices), UsernamePasswordAuthenticationFilter.class);

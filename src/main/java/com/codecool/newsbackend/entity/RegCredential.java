@@ -30,8 +30,5 @@ public class RegCredential {
     @EqualsAndHashCode.Exclude
     private UserData userData;
 
-    @OneToOne(mappedBy = "regCredential")
-    @EqualsAndHashCode.Exclude
-    private Session session;
 
 }
