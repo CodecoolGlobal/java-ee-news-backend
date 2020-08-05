@@ -6,9 +6,14 @@ import com.codecool.newsbackend.entity.UserData;
 import com.codecool.newsbackend.repository.RegCredentialRepository;
 import com.codecool.newsbackend.repository.TopicSettingRepository;
 import com.codecool.newsbackend.repository.UserDataRepository;
+import com.codecool.newsbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 
 @Service
 public class RegistrationService {
@@ -18,6 +23,12 @@ public class RegistrationService {
 
     @Autowired
     private UserDataRepository userDataRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
+    public RegistrationService(UserRepository users) {
+        passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 
 
     public boolean handleRegistration(String username, String email, String password) {
@@ -29,7 +40,7 @@ public class RegistrationService {
         else {
             RegCredential regCredential = RegCredential.builder()
                     .email(email)
-                    .password(password)
+                    .password(passwordEncoder.encode(password))
                     .username(username)
                     .build();
 
@@ -45,7 +56,10 @@ public class RegistrationService {
 
             UserData userData = UserData.builder()
                     .regCredential(regCredential)
+                    .password(passwordEncoder.encode(password))
+                    .username(username)
                     .topicSetting(newSettings)
+                    .roles(Collections.singletonList("ROLE_USER"))
                     .build();
             userData.setRegCredential(regCredential);
             regCredentialRepository.save(regCredential);
