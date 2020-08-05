@@ -14,6 +14,10 @@ import java.util.Set;
 public class Article {
 
     @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column
     public String url;
 
     @Column
@@ -21,4 +25,7 @@ public class Article {
 
     @Column(length = 1000)
     public String imgurl;
+
+    @OneToMany(mappedBy = "article")
+    Set <ArticleUserSwitch> articleUserSwitches;
 }

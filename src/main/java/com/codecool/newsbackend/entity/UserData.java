@@ -36,10 +36,6 @@ public class UserData {
     private TopicSetting topicSetting;
 
 
-    /*
-    @Singular
-    @OneToMany(mappedBy = "userData", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @EqualsAndHashCode.Exclude
-    private Set<Article> articles;
-*/
+    @OneToMany(mappedBy = "userData")
+    Set<ArticleUserSwitch> articleUserSwitches;
 }

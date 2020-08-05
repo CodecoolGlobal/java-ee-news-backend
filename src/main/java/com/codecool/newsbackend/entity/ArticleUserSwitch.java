@@ -6,10 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -22,9 +19,13 @@ public class ArticleUserSwitch {
     @GeneratedValue
     private Long id;
 
-    @Column
-    private String url;
+   @ManyToOne
+    @JoinColumn(name = "article_id")
+    Article article;
 
-    @Column
-    private Long userId;
+   @ManyToOne
+    @JoinColumn(name = "userData_id")
+    UserData userData;
+
+   int valami;
 }

@@ -50,6 +50,6 @@ public class DataInitializer implements CommandLineRunner {
                 .build()
         );
         log.debug("printing all users...");
-        users.findAll().forEach(v -> log.debug(" Newzappuser :" + v.toString()));
+        // users.findAll().forEach(v -> log.debug(" Newzappuser :" + v.toString()));
     }
 }

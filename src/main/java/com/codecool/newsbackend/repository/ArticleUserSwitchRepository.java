@@ -1,3 +1,5 @@
+
+/*
 package com.codecool.newsbackend.repository;
 
 import com.codecool.newsbackend.entity.ArticleUserSwitch;
@@ -15,3 +17,4 @@ public interface ArticleUserSwitchRepository extends JpaRepository<ArticleUserSw
 
 
 }
+*/
