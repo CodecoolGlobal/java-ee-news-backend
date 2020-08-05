@@ -10,7 +10,11 @@ import javax.transaction.Transactional;
 
 public interface FavouritesRepository extends JpaRepository<Article, Long> {
 
-    Article findArticleByTitleAndUserData_Id(String title, Long user_data_id);
+    // boolean findArticleByUrl(String url);
+
+    boolean existsArticleByUrl(String url);
+
+    //Article findArticleByTitleAndUserData_Id(String title, Long user_data_id);
 
     /*
     @Modifying

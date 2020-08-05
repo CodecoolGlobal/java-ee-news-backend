@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
@@ -24,12 +25,24 @@ public class FavouritesController {
     @RequestMapping(path = "/add-favourites", consumes = {MediaType.APPLICATION_JSON_VALUE}, method = POST)
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public String saveTopicSettings(@RequestBody Article article,  @RequestHeader String Authorization) {
-        System.out.println(Authorization);
+    public String saveArticle(@RequestBody Article article,  @RequestHeader String Authorization) {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication.getPrincipal());
         favouritesService.addFavourite((String) authentication.getPrincipal(), article.title, article.url, article.imgurl);
-        System.out.println("mizu: " + article);
+
         return "setting saved";
     }
+
+    /*
+    @RequestMapping(value = "/get-favourites", method = GET)
+    @ResponseBody
+    public String getFavourites(@RequestHeader String Authorization) throws IllegalAccessException {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getPrincipal());
+
+        return topicSettingService.buildUserChosenTopicSelection(username);
+    }
+
+     */
 }

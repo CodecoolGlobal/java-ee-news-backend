@@ -12,14 +12,13 @@ import java.util.Set;
 @Builder
 @Entity
 public class Article {
+
     @Id
-    @GeneratedValue
-    private Long id;
-
-    @ManyToOne
-    private UserData userData;
-
-    public String title;
     public String url;
+
+    @Column
+    public String title;
+
+    @Column(length = 1000)
     public String imgurl;
 }
