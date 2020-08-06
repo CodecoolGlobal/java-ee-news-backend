@@ -8,6 +8,9 @@ import com.codecool.newsbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -24,14 +27,30 @@ public class FavouritesService {
 
         UserData userData = userRepository.getUserDataByUsername(username);
 
-        Set<Article> articles = userData.getArticles();
+        boolean articleSaved = favouritesRepository.existsArticleByUrl(url);
 
-        for ( Article article: articles ) {
-            if(article.url == url) {
-
-            }
+        if (!articleSaved) {
+            Article newArticle = Article.builder()
+                    .title(title)
+                    .imgurl(urlToImg)
+                    .url(url)
+                    .userDatas(new HashSet<>())
+                    .build();
+            newArticle.addUser(userData);
+            favouritesRepository.save(newArticle);
+        } else {
+            Article article = favouritesRepository.findArticleByUrl(url);
+            article.addUser(userData);
+            favouritesRepository.save(article);
         }
     }
 
+    public List<Article> getFavourites(String usermame) {
+
+        UserData userData = userRepository.getUserDataByUsername(usermame);
+        Set<Article> articles = userData.getArticles();
+        List<Article> targetList = new ArrayList<>(articles);
+return targetList;
+    }
 
 }

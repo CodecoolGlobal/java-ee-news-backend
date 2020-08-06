@@ -28,12 +28,16 @@ public class UserData {
     private List<String> roles = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.PERSIST)
+    @EqualsAndHashCode.Exclude
     private RegCredential regCredential;
 
     @OneToOne(cascade = CascadeType.PERSIST)
+    @EqualsAndHashCode.Exclude
     private TopicSetting topicSetting;
 
 
-    @ManyToMany(mappedBy = "userDatas")
-    Set<Article> articles = new HashSet<>();;
+    @ManyToMany
+    @ToString.Exclude
+            @EqualsAndHashCode.Exclude
+    Set<Article> articles = new HashSet<>();
 }

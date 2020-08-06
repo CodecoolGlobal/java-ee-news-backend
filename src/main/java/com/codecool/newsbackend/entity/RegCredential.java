@@ -28,6 +28,7 @@ public class RegCredential {
 
     @OneToOne(mappedBy = "regCredential")
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private UserData userData;
 
 

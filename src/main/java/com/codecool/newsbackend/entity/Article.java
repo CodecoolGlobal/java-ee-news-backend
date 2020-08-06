@@ -27,8 +27,10 @@ public class Article {
     @Column(length = 1000)
     public String imgurl;
 
-    @ManyToMany
-    Set <UserData> userDatas = new HashSet<>();
+    @ManyToMany(mappedBy = "articles")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    Set<UserData> userDatas;
 
     public void addUser(UserData userData) {
         this.userDatas.add(userData);

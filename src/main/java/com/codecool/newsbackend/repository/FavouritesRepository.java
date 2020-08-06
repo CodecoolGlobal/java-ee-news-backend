@@ -12,4 +12,5 @@ public interface FavouritesRepository extends JpaRepository<Article, Long> {
 
     boolean existsArticleByUrl(String url);
 
+    Article findArticleByUrl(String url);
 }
