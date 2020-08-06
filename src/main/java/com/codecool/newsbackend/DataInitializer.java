@@ -40,6 +40,13 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) {
         log.debug("initializing sample data...");
+        RegCredential regCredential = RegCredential.builder()
+                .email("dinnye@dinnye.com")
+                .password(passwordEncoder.encode("dinnye"))
+                .username("dinnye")
+                .build();
+
+
 
         TopicSetting newSettings1 = TopicSetting.builder()
                 .business(false)
@@ -52,17 +59,23 @@ public class DataInitializer implements CommandLineRunner {
                 .build();
 
         UserData userData = UserData.builder()
-                .username("user")
-                .password(passwordEncoder.encode("password"))
-               // .regCredential(regCredential)
+                .username("dinnye")
+                .password(passwordEncoder.encode("dinnye"))
+                .regCredential(regCredential)
                 .roles(Collections.singletonList("ROLE_USER"))
                 .topicSetting(newSettings1)
                 .build();
 
        users.saveAndFlush(userData);
 
-        //userData.setTopicSetting(newSettings1);
-//        newSettings1.setUserData(userData);
+
+
+        RegCredential regCredential2 = RegCredential.builder()
+                .email("admin@admin.com")
+                .password(passwordEncoder.encode("admin"))
+                .username("admin")
+                .build();
+
 
         TopicSetting newSettings2 = TopicSetting.builder()
                 .business(false)
@@ -80,6 +93,7 @@ public class DataInitializer implements CommandLineRunner {
                 .password(passwordEncoder.encode("password"))
                 .roles(Arrays.asList("ROLE_USER", "ROLE_ADMIN"))
                 .topicSetting(newSettings2)
+                .regCredential(regCredential2)
                 .build();
         users.saveAndFlush(admin);
 //
@@ -87,6 +101,12 @@ public class DataInitializer implements CommandLineRunner {
         //topicSetting.save(newSettings2);
 //
 //        admin.setTopicSetting(newSettings2);
+
+        RegCredential regCredential3 = RegCredential.builder()
+                .email("test@test.com")
+                .password(passwordEncoder.encode("test"))
+                .username("Tester")
+                .build();
 
         TopicSetting newSettings3 = TopicSetting.builder()
                 .business(false)
@@ -100,7 +120,8 @@ public class DataInitializer implements CommandLineRunner {
 
         UserData tester = UserData.builder()
                 .username("Tester")
-                .password(passwordEncoder.encode("TestAcc19"))
+                .password(passwordEncoder.encode("test"))
+                .regCredential(regCredential3)
                 .roles(Collections.singletonList("ROLE_USER"))
                 .topicSetting(newSettings3)
                 .build();
