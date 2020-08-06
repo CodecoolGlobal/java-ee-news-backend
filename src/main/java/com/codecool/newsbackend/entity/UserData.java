@@ -3,9 +3,7 @@ package com.codecool.newsbackend.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 @Data
@@ -30,9 +28,16 @@ public class UserData {
     private List<String> roles = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.PERSIST)
+    @EqualsAndHashCode.Exclude
     private RegCredential regCredential;
 
     @OneToOne(cascade = CascadeType.PERSIST)
+    @EqualsAndHashCode.Exclude
     private TopicSetting topicSetting;
 
+
+    @ManyToMany
+    @ToString.Exclude
+            @EqualsAndHashCode.Exclude
+    Set<Article> articles = new HashSet<>();
 }
