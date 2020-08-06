@@ -1,6 +1,7 @@
 package com.codecool.newsbackend.controller;
 
 import com.codecool.newsbackend.entity.Article;
+import com.codecool.newsbackend.entity.ArticleSend;
 import com.codecool.newsbackend.entity.TopicSetting;
 import com.codecool.newsbackend.service.FavouritesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,15 @@ public class FavouritesController {
 
     @RequestMapping(value = "/get-favourites", method = GET)
     @ResponseBody
-    public List<Article> getFavourites(@RequestHeader String Authorization) throws IllegalAccessException {
+    public List<ArticleSend> getFavourites(@RequestHeader String Authorization) throws IllegalAccessException {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(authentication.getPrincipal());
 
-        favouritesService.getFavourites((String) authentication.getPrincipal());
-        return favouritesService.getFavourites((String) authentication.getPrincipal());
+        // favouritesService.getFavourites((String) authentication.getPrincipal());
+        List<ArticleSend> favourites = favouritesService.getFavourites((String) authentication.getPrincipal());
+        System.out.println("wut happens" + favourites);
+        return favourites;
     }
 
 

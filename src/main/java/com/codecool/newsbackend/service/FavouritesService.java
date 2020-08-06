@@ -1,6 +1,7 @@
 package com.codecool.newsbackend.service;
 
 import com.codecool.newsbackend.entity.Article;
+import com.codecool.newsbackend.entity.ArticleSend;
 import com.codecool.newsbackend.entity.UserData;
 // import com.codecool.newsbackend.repository.ArticleUserSwitchRepository;
 import com.codecool.newsbackend.repository.FavouritesRepository;
@@ -45,13 +46,18 @@ public class FavouritesService {
         }
     }
 
-    public List<Article> getFavourites(String username) {
+    public List<ArticleSend> getFavourites(String username) {
 
         UserData userData = userRepository.getUserDataByUsername(username);
         Set<Article> articles = userData.getArticles();
         List<Article> targetList = new ArrayList<>(articles);
         System.out.println("targetList: " + targetList);
-return targetList;
+        List<ArticleSend> faveList = new ArrayList<>();
+        for (Article article: articles) {
+            ArticleSend newSend = new ArticleSend(article.title, article.url, article.imgurl);
+            faveList.add(newSend);
+        }
+return faveList;
     }
 
 }
