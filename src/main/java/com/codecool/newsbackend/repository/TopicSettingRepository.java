@@ -1,6 +1,7 @@
 package com.codecool.newsbackend.repository;
 
 import com.codecool.newsbackend.entity.TopicSetting;
+import com.codecool.newsbackend.entity.UserData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -39,6 +40,8 @@ public interface TopicSettingRepository extends JpaRepository<TopicSetting, Long
 
     @Query("select ts from TopicSetting ts where ts.id = (select u.topicSetting.id from UserData u where u.username = :user_name)")
     TopicSetting getUserChosenTopicsByUserName(@Param("user_name") String user_name);
+
+
 
 
 }

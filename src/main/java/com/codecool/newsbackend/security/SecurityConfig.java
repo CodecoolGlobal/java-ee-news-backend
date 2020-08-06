@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/gettopicselection/*").authenticated()
                 .antMatchers("/add-favourites/").authenticated()
                 .antMatchers("/get-favourites").authenticated()
+                .antMatchers("/get-selected-topics").authenticated()
                 .anyRequest().denyAll() // anything else is denied
                 .and()
                 .addFilterBefore(new JwtTokenFilter(jwtTokenServices), UsernamePasswordAuthenticationFilter.class);

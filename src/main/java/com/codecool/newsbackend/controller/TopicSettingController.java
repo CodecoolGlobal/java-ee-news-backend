@@ -1,11 +1,10 @@
 package com.codecool.newsbackend.controller;
 
 import com.codecool.newsbackend.entity.TopicSetting;
-import com.codecool.newsbackend.entity.UserData;
+import com.codecool.newsbackend.entity.TopicSettingSend;
 import com.codecool.newsbackend.service.TopicSettingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -38,5 +37,14 @@ public class TopicSettingController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(authentication.getPrincipal());
         return topicSettingService.buildUserChosenTopicSelection(username);
+    }
+
+    @RequestMapping(value = "/get-selected-topics", method = GET)
+    @ResponseBody
+    public TopicSettingSend getSelectedTopics(@RequestHeader String Authorization) throws IllegalAccessException {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        return topicSettingService.getTopicSettingForUser((String) authentication.getPrincipal());
     }
 }

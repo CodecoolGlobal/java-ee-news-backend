@@ -1,6 +1,7 @@
 package com.codecool.newsbackend.service;
 
 import com.codecool.newsbackend.entity.TopicSetting;
+import com.codecool.newsbackend.entity.TopicSettingSend;
 import com.codecool.newsbackend.repository.TopicSettingRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -59,6 +60,11 @@ public class TopicSettingService {
             }
         });
         return allSelectedTopics.toString();
+    }
+
+    public TopicSettingSend getTopicSettingForUser(String username) {
+        TopicSetting setting = topicSettingRepository.getUserChosenTopicsByUserName(username);
+        return new TopicSettingSend(setting.isBusiness(), setting.isEntertainment(), setting.isGeneral(), setting.isHealth(), setting.isScience(), setting.isSports(), setting.isTechnology());
     }
 
     public static String MyGETRequestWithLimit(String topic, int limit) throws IOException {
