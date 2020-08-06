@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<UserData, Long> {
 
     UserData getUserDataByUsername(String username);
 
+
+
 }

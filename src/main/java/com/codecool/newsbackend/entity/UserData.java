@@ -3,9 +3,7 @@ package com.codecool.newsbackend.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 @Data
@@ -36,6 +34,6 @@ public class UserData {
     private TopicSetting topicSetting;
 
 
-    @OneToMany(mappedBy = "userData")
-    Set<ArticleUserSwitch> articleUserSwitches;
+    @ManyToMany(mappedBy = "userDatas")
+    Set<Article> articles = new HashSet<>();;
 }

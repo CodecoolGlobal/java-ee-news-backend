@@ -3,6 +3,7 @@ package com.codecool.newsbackend.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -26,6 +27,11 @@ public class Article {
     @Column(length = 1000)
     public String imgurl;
 
-    @OneToMany(mappedBy = "article")
-    Set <ArticleUserSwitch> articleUserSwitches;
+    @ManyToMany
+    Set <UserData> userDatas = new HashSet<>();
+
+    public void addUser(UserData userData) {
+        this.userDatas.add(userData);
+        userData.getArticles().add(this);
+    }
 }
