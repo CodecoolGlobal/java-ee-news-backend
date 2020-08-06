@@ -30,9 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().disable()
                 .csrf().disable()
+                .cors()
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+
                 .antMatchers("/auth/**").permitAll()
                .antMatchers(HttpMethod.GET, "/public/**").permitAll()
                 .antMatchers("/savesettings/*").authenticated()
