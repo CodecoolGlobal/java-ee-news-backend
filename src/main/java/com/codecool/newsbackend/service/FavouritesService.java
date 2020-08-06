@@ -45,11 +45,12 @@ public class FavouritesService {
         }
     }
 
-    public List<Article> getFavourites(String usermame) {
+    public List<Article> getFavourites(String username) {
 
-        UserData userData = userRepository.getUserDataByUsername(usermame);
+        UserData userData = userRepository.getUserDataByUsername(username);
         Set<Article> articles = userData.getArticles();
         List<Article> targetList = new ArrayList<>(articles);
+        System.out.println("targetList: " + targetList);
 return targetList;
     }
 

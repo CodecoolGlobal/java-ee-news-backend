@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -33,16 +34,17 @@ public class FavouritesController {
         return "setting saved";
     }
 
-    /*
+
     @RequestMapping(value = "/get-favourites", method = GET)
     @ResponseBody
-    public String getFavourites(@RequestHeader String Authorization) throws IllegalAccessException {
+    public List<Article> getFavourites(@RequestHeader String Authorization) throws IllegalAccessException {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(authentication.getPrincipal());
 
-        return topicSettingService.buildUserChosenTopicSelection(username);
+        favouritesService.getFavourites((String) authentication.getPrincipal());
+        return favouritesService.getFavourites((String) authentication.getPrincipal());
     }
 
-     */
+
 }
