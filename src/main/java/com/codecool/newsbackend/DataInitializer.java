@@ -104,7 +104,7 @@ public class DataInitializer implements CommandLineRunner {
 
         RegCredential regCredential3 = RegCredential.builder()
                 .email("test@test.com")
-                .password(passwordEncoder.encode("test"))
+                .password(passwordEncoder.encode("TestAcc19"))
                 .username("Tester")
                 .build();
 
@@ -120,7 +120,7 @@ public class DataInitializer implements CommandLineRunner {
 
         UserData tester = UserData.builder()
                 .username("Tester")
-                .password(passwordEncoder.encode("test"))
+                .password(passwordEncoder.encode("TestAcc19"))
                 .regCredential(regCredential3)
                 .roles(Collections.singletonList("ROLE_USER"))
                 .topicSetting(newSettings3)
