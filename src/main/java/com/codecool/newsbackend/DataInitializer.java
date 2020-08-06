@@ -100,7 +100,7 @@ public class DataInitializer implements CommandLineRunner {
 
         UserData tester = UserData.builder()
                 .username("Tester")
-                .password(passwordEncoder.encode("test"))
+                .password(passwordEncoder.encode("TestAcc19"))
                 .roles(Collections.singletonList("ROLE_USER"))
                 .topicSetting(newSettings3)
                 .build();
